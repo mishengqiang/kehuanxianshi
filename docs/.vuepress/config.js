@@ -24,7 +24,7 @@ module.exports = {
       lastUpdated: "最后修改"
     },
     backgroundImage: false,
-    defaultTheme: { light: [6, 18], dark: [18, 6] },
+    // defaultTheme: { light: [6, 18], dark: [18, 6] },
     showThemeButton: false
   },
   // 当你使用 defaultTheme 时，你需要增加一个如下的 postcss 插件
