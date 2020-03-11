@@ -33,5 +33,12 @@ module.exports = {
       require("css-prefers-color-scheme/postcss"),
       require("autoprefixer")
     ]
-  }
+  },
+  plugins: [
+    ['@vuepress/last-updated', {
+      transformer: timestamp => {
+        return new Date(timestamp).toISOString()
+      }
+    }]
+  ]
 };
