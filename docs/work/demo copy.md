@@ -2,7 +2,7 @@
 display: 'home'
 image: '/images/demo.jpg'
 lang: zh-CN
-title: 示例
+title: 示例2
 descripton: 我的第一篇博客
 date: 2020-01-13
 tags:
