@@ -10,6 +10,8 @@ yarn build
 cd docs/.vuepress/dist
 
 git init
+git config user.name "mishengqiang"
+git config user.email "13716526885@139.com"
 git add -A
 git commit -m 'deploy'
 
