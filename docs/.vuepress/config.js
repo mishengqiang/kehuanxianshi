@@ -1,6 +1,8 @@
 module.exports = {
+  base: "/kehuanxianshi/",
   title: "科幻现实",
   description: "科幻工作的技术分享 现实生活的人生思考",
+  locales: { "/": { lang: "zh-CN" } },
   theme: "ououe",
   themeConfig: {
     logo: "",
@@ -18,7 +20,6 @@ module.exports = {
     footer: [
       { text: "京ICP备15040086号", link: "http://www.beian.miit.gov.cn" }
     ],
-    locales: { "/": { lang: "zh-CN" } },
     postTime: {
       createTime: "创建时间",
       lastUpdated: "最后修改"
