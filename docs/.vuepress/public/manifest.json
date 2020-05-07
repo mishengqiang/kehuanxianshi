@@ -1,0 +1,16 @@
+{
+    "name": "科幻现实",
+    "short_name": "科幻现实",
+    "start_url": "/index.html",
+    "display": "standalone",
+    "background_color": "#000",
+    "theme_color": "#3eaf7c",
+    "description": "科幻工作的技术分享 现实生活的人生思考",
+    "icons": [
+        {
+            "src": "/homescreen144.png",
+            "sizes": "144x144",
+            "type": "image/png"
+        }
+    ]
+}
