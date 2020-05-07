@@ -1,5 +1,5 @@
 module.exports = {
-  // base: "/kehuanxianshi/",
+  base: "/kehuanxianshi/",
   title: "科幻现实",
   description: "科幻工作的技术分享 现实生活的人生思考",
   head: [
@@ -54,11 +54,11 @@ module.exports = {
   },
   plugins: [
     ['@vssue/vuepress-plugin-vssue', {
-      platform: 'github',
+      platform: 'gitee',
       owner: 'mishengqiang',
       repo: 'kehuanxianshi',
-      clientId: 'd730c138b9e5aba08351',
-      clientSecret: '284228b35f01a6f81923651522312fa969d685b6'
+      clientId: 'cf033f7ee1b95c35de5047f03e72b088a68377638d0affdbd90663a118cec17c',
+      clientSecret: 'd7dece68765265c743cdde2b2b6352115b905f1b5a9834f90eab7430e848f8fe'
     }],
     ['sitemap', {
       hostname: 'http://www.kehuanxianshi.com/',
