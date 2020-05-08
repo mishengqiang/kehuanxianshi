@@ -69,6 +69,9 @@ module.exports = {
         message: '有新的文章发布',
         buttonText: '刷新'
       }
+    }],
+    ['@vuepress/google-analytics', {
+      ga: 'UA-162290321-2'
     }]
   ]
 };
