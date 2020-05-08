@@ -1,9 +1,9 @@
 ---
-display: "home"
-image: "/images/javascript/es6-arguments-and-parameters.png"
+display: home
+image: /images/javascript/es6-arguments-and-parameters.png
 lang: zh-CN
 title: 【译】ECMAScript 6中的参数使用
-descripton:
+descripton: 开发人员越来越多地使用ECMAScript 6特性，在本教程中，您将学习ECMAScript 6如何升级JavaScript中的参数处理等。
 date: 2016-10-05
 tags:
   - ECMAScript2015
