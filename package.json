@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "vuepress dev docs",
-    "build": "vuepress build docs",
-    "deploy": "sh ./deploy.sh"
+    "build": "vuepress build docs"
   },
   "keywords": [],
   "author": "mishengqiang@139.com",
