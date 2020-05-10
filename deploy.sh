@@ -13,12 +13,11 @@ git init
 git config user.name "mishengqiang"
 git config user.email "13716526885@139.com"
 git add -A
-git commit -m 'deploy'
+git commit -m ':rocket: deploy'
 
 # 如果发布到 https://<USERNAME>.github.io
 # git push -f git@github.com:<USERNAME>/<USERNAME>.github.io.git master
 
-# 如果发布到 https://<USERNAME>.github.io/<REPO>
-git push -f git@gitee.com:mishengqiang/kehuanxianshi.git master:gh-pages
+git push -f git@gitee.com:mishengqiang/kehuanxianshi.git master:gitee-pages
 
 cd -
