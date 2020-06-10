@@ -35,7 +35,7 @@ ES7 新增特性：
 
 让我们深入了解提案及特性。
 
-## <a name=L-code-array.prototype.includes--code->`Array.prototype.includes`</a>
+## `Array.prototype.includes`
 
 使用`Array.prototype.includes`可以使一切变得容易简单。它是`indexOf`方法的替代者，过去开发者使用`indexOf`方法检查数组中是否存在某个值。`indexOf`方法使用起来有点笨拙，因为它返回值所在数组的索引，或者在找不到该值的情况下返回`-1`，这么看来它返回一个数字值，而不是布尔值。开发者还需要进行额外的判断。在 ES6 中，要检查值是否存在，你必须像下面显示的代码一样，因为当匹配不到时，`Array.prototype.indexOf`返回-1，-1 是真值（转化为布尔值是 true），但是当匹配的值的索引为 0 时，数组中确实包含该值，但是 0 转化为布尔值是`false`：
 
@@ -115,7 +115,7 @@ console.log(['a', 'b', 'c'].includes('a', 1)); // === false)
 
 总而言之，`include`方法几乎为所有开发者在需要检查值是否在数组/列表中时提供了便利……。让我们一起欢呼吧 ✌️！
 
-## <a name=exponentiation>求幂运算符`**`</a>
+## 求幂运算符`**`
 
 
 
