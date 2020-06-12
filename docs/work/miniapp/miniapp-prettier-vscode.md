@@ -1,6 +1,6 @@
 ---
-display: "home"
-image: "/images/miniapp/prettier.png"
+display: 'home'
+image: '/images/miniapp/prettier.png'
 lang: zh-CN
 title: 小程序开发系列之 Prettier 格式化
 descripton:
@@ -15,15 +15,15 @@ categories:
 
 <!-- # 小程序开发系列之 Prettier 格式化 -->
 
-这篇文章是讲 Prettier 格式化整个事情的描述可能比较啰嗦。你可以直接阅读[纯技术简洁版]()
+这篇文章是对 Prettier 格式化整个事情的讲述可能比较啰嗦。你可以直接阅读[纯技术简洁版](./miniapp-prettier-vscode-pithy.md)。
 
 ## 背景
 
-今年因为疫情原因，很多公司都在裁员，但是我们公司操作就很秀了，年前就裁员了一大批，然后今年复工后开始~~低价~~招聘。刚开始复工前两个月因为疫情大家都不敢当面面试，因此也没有招人。但是业务需要不能停啊，领导说今年我们要全力发展小程序，毕竟我们是做垂直电商的。soga 领导说啥都是对的，这个项目目前就我一个人不用考虑太多，说干就干直接使用微信小程序开发者工具搞起来。我自己一个人搞了两个月，第一阶段开发完了：一个拥有基本功能电商小程序。
+今年因为疫情原因，很多公司都在裁员，但是我们公司操作就很秀了，年前就裁员了一大批，然后今年复工后又开始招聘。刚开始复工前两个月因为疫情大家都不敢当面面试，因此也没有招人。但是业务需要不能停啊，领导说今年我们要全力发展小程序，毕竟我们是做垂直电商的。soga 领导说啥都是对的，这个项目目前就我一个人不用考虑太多，说干就干直接使用微信小程序开发者工具搞起来。我自己一个人搞了两个月，第一阶段开发完了。
 
-这时国内的疫情基本稳住了，大家都开始活跃起来，就开始面试招人了，先后来了两个小伙伴，第一个来的是一个年轻小伙儿 97 年的，过了一段时间又来了一位经验比较丰富的。第一位来后我带着开发，对开发工具啊、Git 啊、格式化啊等也没什么要求，我们俩人各做一块业务，也相安无事。第二位来了后，毕竟经验丰富，一来就问我有什么需要注意的点要求等等，我回道哈哈哈（尴尬）没有太多要求，按需求开发就行。
+这时国内的疫情基本稳住了，大家都开始活跃起来，我就开始面试招人了，先后来了两个小伙伴，第一个来的是一个年轻小伙儿 97 年的，过了一段时间又来了一位经验比较丰富的。第一位来后我带着开发，对开发工具啊、Git 啊、格式化啊等也没什么要求，我们俩人各做一块业务，也相安无事。第二位来了后，毕竟经验丰富，一来就问我有什么需要注意的点要求等等，我回道哈哈哈（尴尬）没有太多要求，按需求开发就行。
 
-两天过后问题就来了，比如大家各自用的开发环境不同：我是小程序开发者工具，第一位是`PhpStorm`，第二位是`VSCode`，这就导致每个人格式化后的代码是不一样的，每次`git pull`后看到成篇的更改，其实可能就只更改了一个文字或加了一个分号。第二位经验丰富的就开始和我商量搞统一格式化，与此同时我也发现了这个问题，并且已经有处理的想法了。我先询问了他有没有遇到过类似情况以及怎么处理的，他告诉我：让大家都统一 VSCode 的配置文件，我想了想可行但不够好。然后我就把我的想法和他的想法结合在一起搞。
+几天过后问题就暴露出来了，比如各自用的系统不同换行符很乱、各自写法不同，各自编辑器不同：我是小程序开发者工具，第一位是`PhpStorm`，第二位是`VSCode`，这就导致每个人格式化后的代码是不一样的，每次`git pull`后看到成篇的更改，其实可能就只更改了一个文字或加了一个分号。第二位经验丰富的就开始和我商量搞统一格式化，与此同时我也发现了这个问题，并且已经有处理的想法了。我先询问了他有没有遇到过类似情况以及怎么处理的，他告诉我：让大家都统一 VSCode 的配置文件，我想了想可行但不够好。然后我就把我的想法和他的想法结合在一起搞。
 
 ## 想法
 
@@ -42,7 +42,7 @@ categories:
 2. StyleLint：CSS 样式规范校验
 3. Prettier：格式化代码
 
-这三个事情每一个拿出来在**已有的小程序项目**中处理都不容易：
+这三个事情每个单独拿出来在**已有的小程序项目**中处理都不是很容易：
 
 1. ESLint：直接使用官方推荐的规范，基本得把项目中全部的 js 文件处理一遍，这个工作量太大了，最重要的是有些代码处理后可能出错，比如双等于`==`改为全等`===`得全部回归测试一遍，影响项目进度啊，这事儿暂缓了。
 2. StyleLint：样式规范化相对 ESLint 来说要好很多，但是改动的文件也很多，很有可能影响到页面表现，因此这事儿也暂缓了。
@@ -77,7 +77,7 @@ yarn add prettier --dev --exact
 
 配置文件和规则以及忽略代码与忽略文件相结合可以完美处理代码格式化的问题。配置文件可以有多种格式，原本想着将 Prettier 的配置写到`package.json`文件中，这样项目目录会更简洁一些，但是 Prettier 的忽略文件不支持在`package.json`文件配置，因此就都写到了单独的文件中，为了后续保持和 ESLint 及 StyleLint 配置文件的命名格式一致性，就使用了`.prettierrc.js`格式。同时为了防止配置被覆盖（Prettier 扩展程序和下面提到的 minapp 扩展程序都可以单独进行 Prettier 的配置），我把几乎全部的配置项（即使值为默认值的）全都写到了配置文件中如下：
 
-```js
+```javascript
 module.exports = {
   // 换行的宽度，默认80
   printWidth: 120,
@@ -90,30 +90,30 @@ module.exports = {
   // 使用单引号替代双引号，默认值false
   singleQuote: true,
   // 对象的属性（键）是否需要引号包裹，默认值as-needed
-  quoteProps: "as-needed",
+  quoteProps: 'as-needed',
   // 多行时是否添加尾随逗号，默认值从2.0版本开始使用es5
-  trailingComma: "es5",
+  trailingComma: 'es5',
   // 对象字面量的括号之间是否需要空格，默认值true
   bracketSpacing: true,
   // 箭头函数单独的参数是否需要括号包裹，默认值从2.0版本开始使用always
-  arrowParens: "always",
+  arrowParens: 'always',
   // HTML文件的空格敏感度，默认值css
-  htmlWhitespaceSensitivity: "css",
+  htmlWhitespaceSensitivity: 'css',
   // 换行符，默认值从2.0版本开始使用lf
-  endOfLine: "lf",
+  endOfLine: 'lf',
   // 重写配置
   overrides: [
     {
-      files: "*.wxml",
-      options: { parser: "html" },
+      files: '*.wxml',
+      options: { parser: 'html' },
     },
     {
-      files: "*.wxss",
-      options: { parser: "css" },
+      files: '*.wxss',
+      options: { parser: 'css' },
     },
     {
-      files: "*.wxs",
-      options: { parser: "babel" },
+      files: '*.wxs',
+      options: { parser: 'babel' },
     },
   ],
 };
@@ -155,16 +155,16 @@ module.exports = {
   // 重写配置
   overrides: [
     {
-      files: "*.wxml",
-      options: { parser: "html" },
+      files: '*.wxml',
+      options: { parser: 'html' },
     },
     {
-      files: "*.wxss",
-      options: { parser: "css" },
+      files: '*.wxss',
+      options: { parser: 'css' },
     },
     {
-      files: "*.wxs",
-      options: { parser: "babel" },
+      files: '*.wxs',
+      options: { parser: 'babel' },
     },
   ],
 };
@@ -180,23 +180,17 @@ Prettier 的解析器可以[自定义](https://prettier.io/docs/en/api.html#cust
 <div         class="x"       >hello world</div            >
 
 <!-- prettier-ignore-attribute -->
-<div
-  (mousedown)="       onStart    (    )         "
-  (mouseup)="         onEnd      (    )         "
-></div>
+<div (mousedown)="       onStart    (    )         " (mouseup)="         onEnd      (    )         "></div>
 
 <!-- prettier-ignore-attribute (mouseup) -->
-<div
-  (mousedown)="onStart()"
-  (mouseup)="         onEnd      (    )         "
-></div>
+<div (mousedown)="onStart()" (mouseup)="         onEnd      (    )         "></div>
 ```
 
 在`.wxml`中有些元素的**属性值**太长也会换行处理（[Prettier 2.0 对 html 的格式化](https://prettier.io/blog/2020/03/21/2.0.0.html#html)），比如`style`属性，这个属性值换行后小程序开发者工具会编译出错，因此也需要我们做忽略处理。
 
 对于小程序中一些文件或文件夹也要忽略，比如下载的第三方包阿拉丁统计相关的 js 文件、`md5.js`、`crypto.js`、`.vscode`文件夹和`node_modules`文件等等，这些都可以放到`.prettierignore`文件中忽略：
 
-```
+```shell
 .vscode
 node_modules
 miniprogram_npm
