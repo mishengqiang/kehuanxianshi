@@ -1,6 +1,6 @@
 ---
-display: 'none'
-image: '/images/javascript/es7-and-es8.png'
+display: "none"
+image: "/images/javascript/es7-and-es8.png"
 lang: zh-CN
 title: 【译】ES7和ES8新特性
 descripton:
@@ -40,49 +40,49 @@ ES7 新增特性：
 使用`Array.prototype.includes`可以使一切变得容易简单。它是`indexOf`方法的替代者，过去开发者使用`indexOf`方法检查数组中是否存在某个值。`indexOf`方法使用起来有点笨拙，因为它返回值所在数组的索引，或者在找不到该值的情况下返回`-1`，这么看来它返回一个数字值，而不是布尔值。开发者还需要进行额外的判断。在 ES6 中，要检查值是否存在，你必须像下面显示的代码一样，因为当匹配不到时，`Array.prototype.indexOf`返回-1，-1 是真值（转化为布尔值是 true），但是当匹配的值的索引为 0 时，数组中确实包含该值，但是 0 转化为布尔值是`false`：
 
 ```js
-let arr = ['react', 'angular', 'vue'];
+let arr = ["react", "angular", "vue"];
 
 // WRONG
-if (arr.indexOf('react')) {
+if (arr.indexOf("react")) {
   // 0 -> evaluates to false, definitely as we expected
-  console.log('Can use React'); // this line would never be executed
+  console.log("Can use React"); // this line would never be executed
 }
 
 // Correct
-if (arr.indexOf('react') !== -1) {
-  console.log('Can use React');
+if (arr.indexOf("react") !== -1) {
+  console.log("Can use React");
 }
 ```
 
 或者使用一个小技巧，按位求反运算符`〜`会使代码更简洁紧凑，因为对任何数字的`〜`（按位求反）等于`-（a +1）`：
 
 ```js
-let arr = ['react', 'angular', 'vue'];
+let arr = ["react", "angular", "vue"];
 
 // Correct
-if (~arr.indexOf('react')) {
-  console.log('Can use React');
+if (~arr.indexOf("react")) {
+  console.log("Can use React");
 }
 ```
 
 使用 ES7 的`includes`方法的代码：
 
 ```js
-let arr = ['react', 'angular', 'vue'];
+let arr = ["react", "angular", "vue"];
 
 // Correct
-if (arr.includes('react')) {
-  console.log('Can use React');
+if (arr.includes("react")) {
+  console.log("Can use React");
 }
 ```
 
 开发者还可以在字符串中使用`includes`方法：
 
 ```js
-let str = 'React Quickly';
+let str = "React Quickly";
 
 // Correct
-if (str.toLowerCase().includes('react')) {
+if (str.toLowerCase().includes("react")) {
   // true
   console.log('Found "react"');
 }
@@ -109,15 +109,13 @@ console.log([1, 2, NaN].includes(NaN)); // === true)
 console.log([1, 2, -0].includes(+0)); // === true)
 console.log([1, 2, +0].includes(-0)); // === true)
 
-console.log(['a', 'b', 'c'].includes('a')); // === true)
-console.log(['a', 'b', 'c'].includes('a', 1)); // === false)
+console.log(["a", "b", "c"].includes("a")); // === true)
+console.log(["a", "b", "c"].includes("a", 1)); // === false)
 ```
 
 总而言之，`include`方法几乎为所有开发者在需要检查值是否在数组/列表中时提供了便利……。让我们一起欢呼吧 ✌️！
 
 ## 求幂运算符`**`
-
-
 
 - _本文章翻译自[ES7 and ES8 Features](https://node.university/blog/498412/es7-es8)。_
 - _本人英文水平有限，翻译不正确不通顺的地方，敬请指出。_
