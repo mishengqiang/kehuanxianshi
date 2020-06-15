@@ -117,7 +117,47 @@ console.log(["a", "b", "c"].includes("a", 1)); // === false)
 
 ## 求幂运算符`**`
 
-这个运算符主要是为开发人员做一些数学运算，在 3D、虚拟现实、SVG 或数据可视化的情况下很有用。在 ES6 及之前的版本中，您必须创建一个循环，创建一个递归函数或使用 `Math.pow`。如果您忘了什么是指数，那就是当你把同一个数字（底数）乘以自身多次（指数）。例如，7 的 3 次幂是 `7 * 7 * 7`。
+这个运算符主要是为开发者做一些数学运算，在 3D、虚拟现实、SVG 或数据可视化的情况下很有用。在 ES6 及之前的版本中，您必须创建一个循环，创建一个递归函数或使用 `Math.pow`。如果您忘了什么是指数，那就是当你把同一个数字（底数）乘以自身多次（指数）。例如，7 的 3 次幂是 `7 * 7 * 7`。
+
+因此在 ES6 / ES2015 中，您可以使用`Math.pow`或创建一个小的递归箭头函数：
+
+```javascript
+calculateExponent = (base, exponent) =>
+  base * (--exponent > 1 ? calculateExponent(base, exponent) : base);
+console.log(calculateExponent(7, 12) === Math.pow(7, 12)); // true
+console.log(calculateExponent(2, 7) === Math.pow(2, 7)); // true
+```
+
+现在在 ES7 / ES2016 中，面向数学的开发者可以使用较短的语法：
+
+```javascript
+let a = 7 ** 12;
+let b = 2 ** 7;
+console.log(a === Math.pow(7, 12)); // true
+console.log(b === Math.pow(2, 7)); // true
+```
+
+开发者也可以使用操作赋值:
+
+```javascript
+let a = 7;
+a **= 12;
+let b = 2;
+b **= 7;
+console.log(a === Math.pow(7, 12)); // true
+console.log(b === Math.pow(2, 7)); // true
+```
+
+ES 的很多新功能是从其他语言中借鉴过来的（CoffeeScript-最爱，Ruby 等）。你可以猜到其他语言中也会存在求幂运算符：
+
+- Python: `x ** y`
+- CoffeeScript: `x ** y`
+- F#: `x ** y`
+- Ruby: `x ** y`
+- Perl: `x ** y`
+- Lua, Basic, MATLAB: `x ^ y`
+
+对我个人来说，在 JavaScript 中没有求幂运算符从来都不是问题。:)在我写了 15 年的 JavaScript 过程中，除了面试和像这样的教程外，我从未写过任何指数式的东西……求幂运算符对你来说是不可或缺的吗？
 
 - _本文章翻译自[ES7 and ES8 Features](https://node.university/blog/498412/es7-es8)。_
 - _本人英文水平有限，翻译不正确不通顺的地方，敬请指出。_
