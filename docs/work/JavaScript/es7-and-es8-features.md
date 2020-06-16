@@ -163,7 +163,7 @@ ES 的很多新功能是从其他语言中借鉴过来的（CoffeeScript-最爱�
 
 ECMAScript2017 规范中的`Object.values`和`Object.entries`，与`Object.keys`类似都返回一个数组，并且数组的顺序与 `Object.keys`返回的数组顺序一样。
 
-`Object.keys`、`Object.values`和`Object.entries`返回数组中的每一项，都相应地包含了特定对象属性的键、属性的值或属性的键值对。
+`Object.keys`、`Object.values`和`Object.entries`返回数组中的每一项，都相应地包含了对象自身可枚举属性的键、值和键值对。
 
 在 ES8/ES2017 之前，如果 JavaScript 开发者需要迭代对象的自身属性，就必须使用`Object.keys`，然后对其返回的数组进行迭代，并使用`obj[key]`来访问每个值：
 
@@ -185,7 +185,7 @@ for (let key of Object.keys(obj)) {
 
 你也可以使用旧的`for/in`(ES5)，但这会遍历所有可枚举的属性(如原型中的属性或带名字的属性--详情见[MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of#Difference_between_for...of_and_for...in))，而不仅仅是自己的属性，这可能会意外地用`prototype`或`toString`之类的意外值破坏结果。
 
-`Object.values`返回一个对象自己的可枚举属性**值**的数组。我们可以使用`Array.prototype.forEach`对其进行迭代，但要使用 ES6 的箭头函数和隐式返回：
+`Object.values`返回一个对象自身可枚举属性**值**的数组。我们可以使用`Array.prototype.forEach`对其进行迭代，但要使用 ES6 的箭头函数和隐式返回：
 
 ```js
 let obj = { a: 1, b: 2, c: 3 };
@@ -202,7 +202,7 @@ for (let value of Object.values(obj)) {
 // 1, 2, 3
 ```
 
-而 `Object.entries` 则会返回一个对象自己的可枚举属性**键值对**（作为一个数组）的数组，返回结果数组中的每个一项也都是一个数组。
+而 `Object.entries` 则会返回一个对象自身可枚举属性**键值对**（作为一个数组）的数组，返回结果数组中的每个一项也都是一个数组。
 
 ```js
 let obj = {a: 1, b: 2, c: 3}
@@ -230,7 +230,7 @@ for (let [key, value] of Object.entries(obj)) {
 // a is 1, b is 2, c is 3
 ```
 
-现在从对象中提取值和键值对变得更加容易了。`Object.values`和`Object.entries`的执行方式与`Object.keys`是相同的（仅自身属性+顺序相同）。与 `for/of`（ES6）一起使用，我们不仅可以提取还可以进行迭代。
+现在从对象中提取值和键值对变得更加容易了。`Object.values`和`Object.entries`的执行方式与`Object.keys`是相同的（自身属性+顺序相同）。与 `for/of`（ES6）一起使用，我们不仅可以提取还可以进行迭代。
 
 - _本文章翻译自[ES7 and ES8 Features](https://node.university/blog/498412/es7-es8)。_
 - _本人英文水平有限，翻译不正确不通顺的地方，敬请指出。_
