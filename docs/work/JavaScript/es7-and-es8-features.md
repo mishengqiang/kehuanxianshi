@@ -148,7 +148,7 @@ console.log(a === Math.pow(7, 12)); // true
 console.log(b === Math.pow(2, 7)); // true
 ```
 
-ES 的很多新功能是从其他语言中借鉴过来的（CoffeeScript-最爱，Ruby 等）。你可以猜到其他语言中也会存在求幂运算符：
+ES 的很多新功能是从其他语言中借鉴过来的（CoffeeScript-最爱，Ruby 等）。如你所料其他语言中也会存在求幂运算符：
 
 - Python: `x ** y`
 - CoffeeScript: `x ** y`
@@ -220,7 +220,7 @@ Object.entries(obj).forEach(([key, value]) => {
 // a is 1, b is 2, c is 3
 ```
 
-如您所料，我们也可以使用 ES6 的 `for/of`（毕竟是用于数组的！）来迭代 `Object.entrents` 的结果：
+如你所料，我们也可以使用 ES6 的 `for/of`（毕竟是用于数组的！）来迭代 `Object.entrents` 的结果：
 
 ```js
 let obj = { a: 1, b: 2, c: 3 };
@@ -231,6 +231,47 @@ for (let [key, value] of Object.entries(obj)) {
 ```
 
 现在从对象中提取值和键值对变得更加容易了。`Object.values`和`Object.entries`的执行方式与`Object.keys`是相同的（自身属性+顺序相同）。与 `for/of`（ES6）一起使用，我们不仅可以提取还可以进行迭代。
+
+## 使用`padStart`和`padEnd`对字符串填充
+
+`String.prototype.padStart`和`String.prototype.padEnd`使得在 JavaScript 中处理字符串的体验更加愉悦，并有助于避免依赖外部的[库](http://www.haneycodes.net/npm-left-pad-have-we-forgotten-how-to-program)。
+
+`padStart()`通过**在开头**插入填充字符返回指定长度（targetLength）的字符串。填充字符是一个指定的字符串，如果需要的话会重复使用，直到达到所需的长度。左侧是字符串的开头（至少在大多数西方语言中是这样的）。一个典型的示例使用空格填充：
+
+```js
+console.log("react".padStart(10).length); // "     react" is 10
+console.log("backbone".padStart(10).length); // "  backbone" is 10
+```
+
+这对财务报表来可能是一种有用的方法:
+
+```js
+console.log("0.00".padStart(20));
+console.log("10,000.00".padStart(20));
+console.log("250,000.00".padStart(20));
+```
+
+结果会像会计分类账一样有很好的格式：
+
+```
+                0.00
+           10,000.00
+          250,000.00
+```
+
+让我们在第二个参数中传入一些非空的填充字符，使用一个字符来填充：
+
+```js
+console.log("react".padStart(10, "_")); // "_____react"
+console.log("backbone".padStart(10, "*")); // "**backbone"
+```
+
+顾名思义`padEnd`将从右侧的结尾处填充字符串。至于第二个参数，你实际上可以使用任何长度的字符串。例如：
+
+```js
+console.log("react".padEnd(10, ":-)")); // "react:-):-" is 10
+console.log("backbone".padEnd(10, "*")); // "backbone**" is 10
+```
 
 - _本文章翻译自[ES7 and ES8 Features](https://node.university/blog/498412/es7-es8)。_
 - _本人英文水平有限，翻译不正确不通顺的地方，敬请指出。_
