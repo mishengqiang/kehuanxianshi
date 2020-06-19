@@ -273,5 +273,97 @@ console.log("react".padEnd(10, ":-)")); // "react:-):-" is 10
 console.log("backbone".padEnd(10, "*")); // "backbone**" is 10
 ```
 
+## `Object.getOwnPropertyDescriptors`
+
+新的`Object.getOwnPropertyDescriptors`返回对象`obj`所有自身属性的描述符。它是[Object.getOwnPropertyDescriptor(obj，propName)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertyDescriptor)（只返回对象`obj`指定属性`propName`的描述符）的复数版本。
+
+在我们这个不可变编程的时代，这个方法很有用（记住，对象在 JavaScript 中是引用传递的！）。在 ES5 中，开发者使用`Object.assign()`复制对象。但是，`Object.assign()`不仅会复制或定义新的属性，还会分配属性。当使用更复杂的对象或类的原型时，这可能会导致问题。
+
+`Object.getOwnPropertyDescriptors`允许创建对象的*真正的*浅层副本并创建子类。它是通过给开发者提供描述符来实现的。把描述符放在`Object.create(prototype，object)`中，可以得到一个*真正的*浅层副本：
+
+```js
+Object.create(
+  Object.getPrototypeOf(obj),
+  Object.getOwnPropertyDescriptors(obj)
+);
+```
+
+或者你可以像下面这样合并两个对象`target`和`source`：
+
+```js
+Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
+```
+
+这就是`Object.getOwnPropertyDescriptors`的用法，但是描述符是什么？就是一个描述对象。这不废话吗。
+
+好吧，我们更深入了解一下描述符。在 JavaScript 中，有两种类型的描述符：
+
+1. 数据描述符
+2. 访问器描述符
+
+访问器描述符有强制属性：`get`或`set`或同时具有`get`和`set`，就是你猜到的[getter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get)和[setter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get)函数。访问器描述符还有可选的属性：`configurable`和`enumerable`。
+
+```js
+let azatsBooks = {
+  books: ["React Quickly"],
+  get latest() {
+    let numberOfBooks = this.books.length;
+    if (numberOfBooks == 0) return undefined;
+    return this.books[numberOfBooks - 1];
+  },
+};
+```
+
+由`Object.getOwnPropertyDescriptor(azatsBooks, 'books')`生成的`books`数据描述符的示例：
+
+```
+Object
+	configurable: true
+	enumerable: true
+	value: Array[1]
+	writable: true
+	__proto__: Object
+```
+
+同样，`Object.getOwnPropertyDescriptor(azatsBooks, 'latest')`将显示`latest`的描述符。这是`latest`的（get）访问器描述符的示例：
+
+```
+Object
+	configurable: truee
+	numerable: true
+	get: latest()
+	set: undefined
+	__proto__: Object
+```
+
+现在，让我们调用新方法来获取所有的描述符：
+
+```js
+console.log(Object.getOwnPropertyDescriptors(azatsBooks));
+```
+
+它将给出一个同时包含`books`和`latest`描述符的对象。
+
+```
+Object
+  books: Object
+    configurable: true
+    enumerable: true
+    value: Array[1]
+    writable: true
+    __proto__: Object
+  latest: Object
+    configurable: true
+    enumerable: true
+    get: latest()
+    set: undefined
+    __proto__: Object
+  __proto__: Object
+```
+
+或者，如果你喜欢 DevTools 的格式，请看截图：
+
+![](./es7-and-es8-features/descriptors.png)
+
 - _本文章翻译自[ES7 and ES8 Features](https://node.university/blog/498412/es7-es8)。_
 - _本人英文水平有限，翻译不正确不通顺的地方，敬请指出。_
