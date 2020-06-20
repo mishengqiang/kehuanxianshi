@@ -37,7 +37,7 @@ ES7 新增特性：
 
 ## `Array.prototype.includes`
 
-使用`Array.prototype.includes`可以使一切变得容易简单。它是`indexOf`方法的替代者，过去开发者使用`indexOf`方法检查数组中是否存在某个值。`indexOf`方法使用起来有点笨拙，因为它返回值所在数组的索引，或者在找不到该值的情况下返回`-1`，这么看来它返回一个数字值，而不是布尔值。开发者还需要进行额外的判断。在 ES6 中，要检查值是否存在，你必须像下面显示的代码一样，因为当匹配不到时，`Array.prototype.indexOf`返回-1，-1 是真值（转化为布尔值是 true），但是当匹配的值的索引为 0 时，数组中确实包含该值，但是 0 转化为布尔值是`false`：
+使用`Array.prototype.includes`可以使一切变得容易简单。它是`indexOf`方法的替代者，过去开发人员使用`indexOf`方法检查数组中是否存在某个值。`indexOf`方法使用起来有点笨拙，因为它返回值所在数组的索引，或者在找不到该值的情况下返回`-1`，这么看来它返回一个数字值，而不是布尔值。开发人员还需要进行额外的判断。在 ES6 中，要检查值是否存在，你必须像下面显示的代码一样，因为当匹配不到时，`Array.prototype.indexOf`返回-1，-1 是真值（转化为布尔值是 true），但是当匹配的值的索引为 0 时，数组中确实包含该值，但是 0 转化为布尔值是`false`：
 
 ```js
 let arr = ["react", "angular", "vue"];
@@ -76,7 +76,7 @@ if (arr.includes("react")) {
 }
 ```
 
-开发者还可以在字符串中使用`includes`方法：
+开发人员还可以在字符串中使用`includes`方法：
 
 ```js
 let str = "React Quickly";
@@ -96,7 +96,7 @@ if (str.toLowerCase().includes("react")) {
 - CoffeeScript：`in`运算符（[示例](https://bit.ly/2jGxfaL)）
 - Dart：`list.contains`（[示例](https://gist.github.com/anonymous/b8e39109e5705a9a0ff7281c1af97195)）
 
-除了更加具有说服力和实际为开发者提供布尔值（而不是匹配位置）之外，`include`方法还可以和`NaN`一起使用。最后，`include`方法具有第二个可选参数`fromIndex`，这有利于优化代码，因为它允许从指定的位置开始查找匹配项。
+除了更加具有说服力和实际为开发人员提供布尔值（而不是匹配位置）之外，`include`方法还可以和`NaN`一起使用。最后，`include`方法具有第二个可选参数`fromIndex`，这有利于优化代码，因为它允许从指定的位置开始查找匹配项。
 
 更多示例：
 
@@ -113,11 +113,11 @@ console.log(["a", "b", "c"].includes("a")); // === true)
 console.log(["a", "b", "c"].includes("a", 1)); // === false)
 ```
 
-总而言之，`include`方法几乎为所有开发者在需要检查值是否在数组/列表中时提供了便利……。让我们一起欢呼吧 ✌️！
+总而言之，`include`方法几乎为所有开发人员在需要检查值是否在数组/列表中时提供了便利……。让我们一起欢呼吧 ✌️！
 
 ## 求幂运算符`**`
 
-这个运算符主要是为开发者做一些数学运算，在 3D、虚拟现实、SVG 或数据可视化的情况下很有用。在 ES6 及之前的版本中，您必须创建一个循环，创建一个递归函数或使用 `Math.pow`。如果您忘了什么是指数，那就是当你把同一个数字（底数）乘以自身多次（指数）。例如，7 的 3 次幂是 `7 * 7 * 7`。
+这个运算符主要是为开发人员做一些数学运算，在 3D、虚拟现实、SVG 或数据可视化的情况下很有用。在 ES6 及之前的版本中，您必须创建一个循环，创建一个递归函数或使用 `Math.pow`。如果您忘了什么是指数，那就是当你把同一个数字（底数）乘以自身多次（指数）。例如，7 的 3 次幂是 `7 * 7 * 7`。
 
 因此在 ES6 / ES2015 中，您可以使用`Math.pow`或创建一个小的递归箭头函数：
 
@@ -128,7 +128,7 @@ console.log(calculateExponent(7, 12) === Math.pow(7, 12)); // true
 console.log(calculateExponent(2, 7) === Math.pow(2, 7)); // true
 ```
 
-现在在 ES7 / ES2016 中，面向数学的开发者可以使用较短的语法：
+现在在 ES7 / ES2016 中，面向数学的开发人员可以使用较短的语法：
 
 ```javascript
 let a = 7 ** 12;
@@ -137,7 +137,7 @@ console.log(a === Math.pow(7, 12)); // true
 console.log(b === Math.pow(2, 7)); // true
 ```
 
-开发者也可以使用操作赋值:
+开发人员也可以使用操作赋值:
 
 ```javascript
 let a = 7;
@@ -165,7 +165,7 @@ ECMAScript2017 规范中的`Object.values`和`Object.entries`，与`Object.keys`
 
 `Object.keys`、`Object.values`和`Object.entries`返回数组中的每一项，都相应地包含了对象自身可枚举属性的键、值和键值对。
 
-在 ES8/ES2017 之前，如果 JavaScript 开发者需要迭代对象的自身属性，就必须使用`Object.keys`，然后对其返回的数组进行迭代，并使用`obj[key]`来访问每个值：
+在 ES8/ES2017 之前，如果 JavaScript 开发人员需要迭代对象的自身属性，就必须使用`Object.keys`，然后对其返回的数组进行迭代，并使用`obj[key]`来访问每个值：
 
 ```js
 let obj = { a: 1, b: 2, c: 3 };
@@ -277,9 +277,9 @@ console.log("backbone".padEnd(10, "*")); // "backbone**" is 10
 
 新的`Object.getOwnPropertyDescriptors`返回对象`obj`所有自身属性的描述符。它是[Object.getOwnPropertyDescriptor(obj，propName)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertyDescriptor)（只返回对象`obj`指定属性`propName`的描述符）的复数版本。
 
-在我们这个不可变编程的时代，这个方法很有用（记住，对象在 JavaScript 中是引用传递的！）。在 ES5 中，开发者使用`Object.assign()`复制对象。但是，`Object.assign()`不仅会复制或定义新的属性，还会分配属性。当使用更复杂的对象或类的原型时，这可能会导致问题。
+在我们这个不可变编程的时代，这个方法很有用（记住，对象在 JavaScript 中是引用传递的！）。在 ES5 中，开发人员使用`Object.assign()`复制对象。但是，`Object.assign()`不仅会复制或定义新的属性，还会分配属性。当使用更复杂的对象或类的原型时，这可能会导致问题。
 
-`Object.getOwnPropertyDescriptors`允许创建对象的*真正的*浅层副本并创建子类。它是通过给开发者提供描述符来实现的。把描述符放在`Object.create(prototype，object)`中，可以得到一个*真正的*浅层副本：
+`Object.getOwnPropertyDescriptors`允许创建对象的*真正的*浅层副本并创建子类。它是通过给开发人员提供描述符来实现的。把描述符放在`Object.create(prototype，object)`中，可以得到一个*真正的*浅层副本：
 
 ```js
 Object.create(
@@ -364,6 +364,55 @@ Object
 或者，如果你喜欢 DevTools 的格式，请看截图：
 
 ![](./es7-and-es8-features/descriptors.png)
+
+## 参数（包括形参和实参）列表尾随逗号
+
+函数定义中的参数列表尾随逗号是纯粹的语法变化。在 ES5 中，正确的 JavaScript 函数定义语法，在最后一个函数参数后面*不应该有逗号*：
+
+<!-- prettier-ignore -->
+```js
+var f = function(a,
+  b,
+  c,
+  d) { // NO COMMA!
+  // ...
+  console.log(d)
+}
+f(1,2,3,'this')
+```
+
+在 ES8 中，可以使用尾随逗号：
+
+<!-- prettier-ignore -->
+```js
+var f = function(a,
+  b,
+  c,
+  d,
+) { // COMMA? OK!
+  // ...
+  console.log(d)
+}
+f(1,2,3,'this')
+```
+
+现在，函数中的尾随逗号与数组（ES3）和对象字面量（ES5）中的尾随逗号规则是一致的：
+
+<!-- prettier-ignore -->
+```js
+var arr = [1,  // Length == 3
+  2,
+  3,
+]  // <--- ok
+let obj = {a: 1,  // Only 3 properties
+  b: 2,
+  c: 3,
+}  // <--- ok
+```
+
+更不用说它对 git 非常友好！
+
+当使用多行样式（通常带有很多长参数名）时，最能凸显尾随逗号的作用。开发人员终于可以忘记看起来很奇怪的逗号优先的使用方式，在 ES5 及之前的版本中函数定义使用尾随逗号会发生错误，所以开发者不得不使用逗号优先的方式。现在，你可以在任何地方使用逗号，**甚至在最后一个参数后面**。
 
 - _本文章翻译自[ES7 and ES8 Features](https://node.university/blog/498412/es7-es8)。_
 - _本人英文水平有限，翻译不正确不通顺的地方，敬请指出。_
