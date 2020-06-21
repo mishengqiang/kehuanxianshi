@@ -117,9 +117,9 @@ console.log(["a", "b", "c"].includes("a", 1)); // === false)
 
 ## 求幂运算符`**`
 
-这个运算符主要是为开发人员做一些数学运算，在 3D、虚拟现实、SVG 或数据可视化的情况下很有用。在 ES6 及之前的版本中，您必须创建一个循环，创建一个递归函数或使用 `Math.pow`。如果您忘了什么是指数，那就是当你把同一个数字（底数）乘以自身多次（指数）。例如，7 的 3 次幂是 `7 * 7 * 7`。
+这个运算符主要是为开发人员做一些数学运算，在 3D、虚拟现实、SVG 或数据可视化的情况下很有用。在 ES6 及之前的版本中，你必须创建一个循环，创建一个递归函数或使用 `Math.pow`。如果你忘了什么是指数，那就是当你把同一个数字（底数）乘以自身多次（指数）。例如，7 的 3 次幂是 `7 * 7 * 7`。
 
-因此在 ES6 / ES2015 中，您可以使用`Math.pow`或创建一个小的递归箭头函数：
+因此在 ES6 / ES2015 中，你可以使用`Math.pow`或创建一个小的递归箭头函数：
 
 ```javascript
 calculateExponent = (base, exponent) =>
@@ -413,6 +413,102 @@ let obj = {a: 1,  // Only 3 properties
 更不用说它对 git 非常友好！
 
 当使用多行样式（通常带有很多长参数名）时，最能凸显尾随逗号的作用。开发人员终于可以忘记看起来很奇怪的逗号优先的使用方式，在 ES5 及之前的版本中函数定义使用尾随逗号会发生错误，所以开发者不得不使用逗号优先的方式。现在，你可以在任何地方使用逗号，**甚至在最后一个参数后面**。
+
+## 异步函数
+
+异步函数(或 async/await)特性是基于[Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)的语法糖，所以你可能需要阅读一下 Promise，或者看一个视频课程来复习一下。异步函数是为了简化异步代码的编写，因为......好吧，因为人类的大脑不擅长并行无序的思考方式。它只是没有进化成那样。
+
+就我个人而言，我从来不喜欢 Promises。与回调函数相比 Promise 非常啰嗦，所以我从来没有使用过 Promise。幸运的是，ES8 的异步函数更具有说服力。开发人员可以定义一个`async`函数，该函数可以包含也可以不包含对基于 promise 异步操作的`await`。在代码的背后，异步函数其实返回一个 Promise，然而你并不会在异步函数的函数体中看到关键字 Promise（当然，除非你明确使用它）。
+
+例如，在 ES6 中，我们可以使用 Promise 和[Axios](https://github.com/mzabriskie/axios)库向 GraphQL 服务器发送请求：
+
+```js
+axios
+  .get(`/q?query=${query}`)
+  .then((response) => response.data)
+  .then((data) => {
+    this.props.processfetchedData(data); // Defined somewhere else
+  })
+  .catch((error) => console.log(error));
+```
+
+任何 Promise 库都能与新的异步函数兼容。我们可以使用同步代码 try/catch 来处理错误：
+
+```js
+async fetchData(url) => {
+  try {
+    const response = await axios.get(`/q?query=${query}`)
+    const data = response.data
+    this.props.processfetchedData(data)
+  } catch (error) {
+    console.log(error)
+  }
+}
+```
+
+异步函数返回一个 Promise，因此我们可以像这样继续执行流程：
+
+```js
+async fetchData(query) => {
+  try {
+    const response = await axios.get(`/q?query=${query}`)
+    const data = response.data
+  	return data
+  } catch (error) {
+    console.log(error)
+  }
+}
+fetchData(query).then(data => {
+  this.props.processfetchedData(data)
+})
+```
+
+你可以在([Babel REPL](https://bit.ly/2kjLPFg))中看到下面这段代码。需要注意的是，这个示例是模拟实现 Axios 库的功能，在代码中调用了`setTimeout`模拟实现，并没有进行真正的 HTTP 请求：
+
+```js
+let axios = {
+  // mocks
+  get: function(x) {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve({ data: x });
+      }, 2000);
+    });
+  },
+};
+let query = "mangos";
+async function fetchData(query) {
+  try {
+    const response = await axios.get(`/q?query=${query}`);
+    const data = response.data;
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+}
+fetchData(query).then((data) => {
+  console.log(data); // Got data 2s later... Can use data!
+});
+```
+
+使用 async/await，你的代码是异步执行的，但看起来像同步的。从上到下阅读这样的代码，更容易理解它在做什么，因为结果出现的顺序和函数体的执行顺序都是从上到下。
+
+## 总结
+
+这就是 ES8（未最终确定）和 ES7（已发布）的所有功能。如果你使用 Babel、Traceur 或类似的转译器，你现在就可以使用所有这些功能以及更多的 0-3 阶段的功能特性，而无需等待浏览器来实现它们。ES7 和 ES8 的代码将简单地转换为 ES5 兼容代码。甚至在 Internet Explorer 9 也可以使用。:)
+
+一些需要注意的 ES8 功能特性，因为它们目前还处于第 3 阶段，但很可能最终会出现在 ES8/ES2017 中：
+
+- 共享内存和原子
+- SIMD.JS - SIMD APIs
+- Function.prototype.toString
+- 解除模板字符串的限制
+- global
+- Rest/Spread 属性
+- 异步迭代
+- import()
+
+你可以在[有效提案](https://github.com/tc39/proposals/blob/master/README.md#active-proposals)和[已完成提案](https://github.com/tc39/proposals/blob/master/finished-proposals.md)中查看它们的状态。
 
 - _本文章翻译自[ES7 and ES8 Features](https://node.university/blog/498412/es7-es8)。_
 - _本人英文水平有限，翻译不正确不通顺的地方，敬请指出。_
