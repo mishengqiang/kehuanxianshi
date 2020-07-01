@@ -1,19 +1,19 @@
 ---
-display: 'none'
-image: '/images/javascript/optional-chaining-nullish-coalescing.jpg'
+display: "none"
+image: "/images/javascript/optional-chaining-nullish-coalescing.jpg"
 lang: zh-CN
 title: ES2020 新特性 Optional Chaining 和 Nullish Coalescing
-descripton: 
+descripton:
 date: 2019-12-15
 tags:
-    - Optional Chaining
-    - Nullish Coalescing
+  - Optional Chaining
+  - Nullish Coalescing
 categories:
-    - Javascript
-    - 原创
+  - Javascript
+  - 原创
 ---
 
-上周微软 TypeScript 程序经理Daniel Rosenwasser（[@drosenwasser](https://twitter.com/drosenwasser)）发[推文](https://twitter.com/drosenwasser/status/1202310742436761600)：Optional Chaning特性进入TC39的第 4 阶段，`?.`运算符现在是ES2020标准的一部分了。
+上周微软 TypeScript 程序经理 Daniel Rosenwasser（[@drosenwasser](https://twitter.com/drosenwasser)）发[推文](https://twitter.com/drosenwasser/status/1202310742436761600)：Optional Chaning 特性进入 TC39 的第 4 阶段，`?.`运算符现在是 ES2020 标准的一部分了。
 
 ![](./optional_chaining_and_nullish_coalescing/twitter.jpg)
 
@@ -22,7 +22,7 @@ categories:
 
 我们可以通过 Babel 或 TypeScript 工具在新项目中使用这两个特性，
 但是目前尽量不要在长期维护的重要项目中使用，以避免这两个特性无法入选正式标准而造成损失。
-当前Chrome 80+版本（开发者版本）浏览器已支持这两个运算符。
+当前 Chrome 80+版本（开发者版本）浏览器已支持这两个运算符。
 
 ## Optional Chaining（安全导航运算符）
 
@@ -62,14 +62,16 @@ var _a;
 安全导航符`?.`在`C#`、`Swift`、`Kotlin`和`Ruby`等语言中都要实现，但各个之间都略有差异，这里我们只关注 JavaScript 中的安全导航符`?.`，下面我们来深入了解一下。
 
 ### 语法：
+
 ```js
  obj?.prop         \\ 可选判断静态属性访问
  obj?.[expr]       \\ 可选判断动态属性访问
  func?.(...args)   \\ 可选判断函数或方法调用
 ```
-用法其实就是将我们熟悉的`.`运算符替换为`?.`运算符，注意看是不是觉得`?.`运算符和三目运算符`? : `略像但又不像，
-### 特性：
 
+用法其实就是将我们熟悉的`.`运算符替换为`?.`运算符，注意看是不是觉得`?.`运算符和三目运算符`? :`略像但又不像，
+
+### 特性：
 
 > -
 >
@@ -164,8 +166,8 @@ Babel 很早就提供了针对[Optional Chaining](https://babeljs.io/docs/en/nex
     presets: ["@vue/app"],
     plugins: [
       "@babel/plugin-proposal-optional-chaining",
-      "@babel/plugin-proposal-nullish-coalescing-operator"
-    ]
+      "@babel/plugin-proposal-nullish-coalescing-operator",
+    ],
   };
   ```
 - 插件参数`loose`，类型为`boolean`，默认值为`false`。当值为`true`时，会使用等于`null`而非使用严格全等的`null`和`undefined`做检查，具体看下面示例：
@@ -191,10 +193,12 @@ Babel 很早就提供了针对[Optional Chaining](https://babeljs.io/docs/en/nex
 
   // 输出 当loose === false时
   var _object$foo;
-  var foo = (_object$foo = object.foo) !== null && _object$foo !== void 0 ? _object$foo : "default";
+  var foo =
+    (_object$foo = object.foo) !== null && _object$foo !== void 0
+      ? _object$foo
+      : "default";
   ```
 
-  >这两个操作符的判断都涉及到了`document.all`，现代浏览器的行为`document.all == null`返回`true`，是的你没有看错确实返回了`true`。之所以出现这样的行为，是因为历史遗留的问题导致的。详情看：[Why is document.all falsy?](https://stackoverflow.com/questions/10350142/why-is-document-all-falsy)或[V8 的 typeof null 返回 "undefined" 的 bug 是怎么回事](https://www.cnblogs.com/ziyunfei/p/5618152.html)。
+  > 这两个操作符的判断都涉及到了`document.all`，现代浏览器的行为`document.all == null`返回`true`，是的你没有看错确实返回了`true`。之所以出现这样的行为，是因为历史遗留的问题导致的。详情看：[Why is document.all falsy?](https://stackoverflow.com/questions/10350142/why-is-document-all-falsy)或[V8 的 typeof null 返回 "undefined" 的 bug 是怎么回事](https://www.cnblogs.com/ziyunfei/p/5618152.html)。
 
-
-*封面图片来源：[optional-chaining-nullish-coalescing.jpg](https://zhuanlan.zhihu.com/p/75792393)*
+_封面图片来源：[optional-chaining-nullish-coalescing.jpg](https://zhuanlan.zhihu.com/p/75792393)_
