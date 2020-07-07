@@ -42,7 +42,8 @@ npm install --save-dev --save-exact prettier
 yarn add prettier --dev --exact
 ```
 
-在项目中创建`.prettierrc.js`配置文件，防止被其它格式化配置影响，我几乎将全部的配置项（即使值为默认值的）全都写到了配置文件中，具体如下：
+在项目中创建`.prettierrc.js`配置文件，防止被其它格式化配置影响，我几乎将全部的配
+置项（即使值为默认值的）全都写到了配置文件中，具体如下：
 
 ```javascript
 module.exports = {
@@ -86,7 +87,8 @@ module.exports = {
 };
 ```
 
-在`package.json`中设置脚本命令，这样项目人员无论使用哪个编辑器，都可以通过在终端中运行命令`npm run prettier`进行格式化，配置如下：
+在`package.json`中设置脚本命令，这样项目人员无论使用哪个编辑器，都可以通过在终端
+中运行命令`npm run prettier`进行格式化，配置如下：
 
 ```json
 {
@@ -104,9 +106,13 @@ module.exports = {
 
 这里面有几个特殊的配置需要注意：
 
-1. 换行符设置为`lf`：windows 系统 git checkout 时会将换行符转换为`crlf`，处理方法[git 帮助文档](https://help.github.com/cn/github/using-git/configuring-git-to-handle-line-endings#per-repository-settings)和[Prettier 的 End of Line](https://prettier.io/docs/en/options.html#end-of-line)都给出了具体的做法：创建一个`.gitattributes`文件，然后添加`* text=auto eol=lf`内容即可。
+1. 换行符设置为`lf`：windows 系统 git checkout 时会将换行符转换为`crlf`，处理方
+   法[git 帮助文档](https://help.github.com/cn/github/using-git/configuring-git-to-handle-line-endings#per-repository-settings)和[Prettier 的 End of Line](https://prettier.io/docs/en/options.html#end-of-line)都
+   给出了具体的做法：创建一个`.gitattributes`文件，然后添
+   加`* text=auto eol=lf`内容即可。
 
-2. 解析器：微信小程序自定义的文件格式 Prettier 无法识别，因此需要在重写配置里面指定解析器处理。
+2. 解析器：微信小程序自定义的文件格式 Prettier 无法识别，因此需要在重写配置里面
+   指定解析器处理。
 
    ```js
    module.exports = {
@@ -140,13 +146,20 @@ module.exports = {
      <div         class="x"       >hello world</div            >
 
      <!-- prettier-ignore-attribute -->
-     <div (mousedown)="       onStart    (    )         " (mouseup)="         onEnd      (    )         "></div>
+     <div
+       (mousedown)="       onStart    (    )         "
+       (mouseup)="         onEnd      (    )         "
+     ></div>
 
      <!-- prettier-ignore-attribute (mouseup) -->
-     <div (mousedown)="onStart()" (mouseup)="         onEnd      (    )         "></div>
+     <div
+       (mousedown)="onStart()"
+       (mouseup)="         onEnd      (    )         "
+     ></div>
      ```
 
-     `.wxml`文件中的`<wxs>...</wxs>`脚本代码需要使用`<!-- prettier-ignore -->`忽略，否则会被格式化为一行，小程序开发者工具报错：
+     `.wxml`文件中的`<wxs>...</wxs>`脚本代码需要使用`<!-- prettier-ignore -->`忽
+     略，否则会被格式化为一行，小程序开发者工具报错：
 
      ```html
      <view>
@@ -158,7 +171,8 @@ module.exports = {
      </wxs>
      ```
 
-     `.wxml`文件中的有些元素属性太长会被格式化为多行，小程序开发者工具也会报错。比如`style`属性，使用`<!-- prettier-ignore-attribute style -->`即可。
+     `.wxml`文件中的有些元素属性太长会被格式化为多行，小程序开发者工具也会报错。
+     比如`style`属性，使用`<!-- prettier-ignore-attribute style -->`即可。
 
      ```html
      <view>
@@ -223,9 +237,11 @@ npx mrm lint-staged
 
 ### 实现与编辑器集成
 
-在 VSCode 中安装官方的[Prettier 扩展程序](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)。
+在 VSCode 中安装官方
+的[Prettier 扩展程序](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)。
 
-将`.wxss`文件关联为`.css`文件格式，将`.wxs`文件关联为`.js`文件格式，`.wxml`文件需要安装 minapp 扩展程序并设置格式化工具为 prettier 。 VSCode 工作区的配置：
+将`.wxss`文件关联为`.css`文件格式，将`.wxs`文件关联为`.js`文件格式，`.wxml`文件
+需要安装 minapp 扩展程序并设置格式化工具为 prettier 。 VSCode 工作区的配置：
 
 ```json
 {
@@ -250,4 +266,5 @@ npx mrm lint-staged
 
 ## 结语
 
-经过以上配置小程序项目就可以在 VSCode 中完美格式化了。但是新的问题又来了，请看一下篇文章[小程序开发系列之迁移到 VSCode 开发]()。
+经过以上配置小程序项目就可以在 VSCode 中完美格式化了。但是新的问题又来了，请看一
+下篇文章[小程序开发系列之迁移到 VSCode 开发]()。
