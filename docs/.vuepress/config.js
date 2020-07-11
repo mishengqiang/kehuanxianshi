@@ -49,6 +49,9 @@ module.exports = {
     showThemeButton: false,
     useVssue: true,
   },
+  markdown: {
+    lineNumbers: true,
+  },
   // 当你使用 defaultTheme 时，你需要增加一个如下的 postcss 插件
   postcss: {
     plugins: [
@@ -80,7 +83,7 @@ module.exports = {
       '@vuepress/pwa',
       {
         updatePopup: {
-          message: '有新的文章发布',
+          message: '有新的内容更新',
           buttonText: '刷新',
         },
       },
