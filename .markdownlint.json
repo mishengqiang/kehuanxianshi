@@ -1,0 +1,15 @@
+{
+  "default": true,
+  "MD013": {
+    "code_blocks": false,
+    "tables": false,
+    "headings": false
+  },
+  "MD026": {
+    "punctuation": ".,;:!。，；：！"
+  },
+  "MD036": false,
+  "no-inline-html": {
+    "allowed_elements": ["iframe"]
+  }
+}

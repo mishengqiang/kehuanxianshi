@@ -7,7 +7,7 @@
     "dev": "vuepress dev docs",
     "build": "vuepress build docs",
     "prettier": "prettier --write .",
-    "markdownlint": "markdownlint --fix ./*.md"
+    "mdlint": "markdownlint --fix ./*.md"
   },
   "keywords": [],
   "author": "mishengqiang@139.com",
