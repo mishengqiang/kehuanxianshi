@@ -37,9 +37,7 @@ module.exports = {
       { text: '生活', link: '/life/' },
       { text: '关于', link: '/about/' },
     ],
-    footer: [
-      { text: '京ICP备15040086号', link: 'http://www.beian.miit.gov.cn' },
-    ],
+    footer: [{ text: '京ICP备15040086号', link: 'https://beian.miit.gov.cn' }],
     postTime: {
       createTime: '创建时间',
       lastUpdated: '最后修改',
